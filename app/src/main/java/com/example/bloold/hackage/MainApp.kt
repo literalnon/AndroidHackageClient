@@ -18,7 +18,7 @@ class MainApp : MultiDexApplication() {
 
         AndroidThreeTen.init(this)
 
-        RestApi.init(this, Authenticator( {route, response ->
+        RestApi.init(Authenticator( {route, response ->
                 if (response.code() == 401) {
                     throw NetworkError(response.message())
                 }

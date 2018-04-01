@@ -13,6 +13,6 @@ object Const {
     }
 
     object Headers {
-
+        const val ACCEPT = "Accept"
     }
 }

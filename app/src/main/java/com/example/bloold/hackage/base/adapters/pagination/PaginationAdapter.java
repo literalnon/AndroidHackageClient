@@ -9,13 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import com.example.bloold.hackage.R;
+import com.example.bloold.hackage.base.adapters.AdapterDelegate;
+import com.example.bloold.hackage.base.adapters.DelegationAdapter;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.List;
-
-import services.mobiledev.ru.autoservices.R;
-import services.mobiledev.ru.autoservices.base.adapters.AdapterDelegate;
-import services.mobiledev.ru.autoservices.base.adapters.DelegationAdapter;
 
 
 public class PaginationAdapter<T> extends DelegationAdapter<T> {

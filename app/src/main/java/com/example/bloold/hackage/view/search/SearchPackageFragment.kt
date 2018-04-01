@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.speech.RecognizerIntent
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
@@ -66,6 +67,16 @@ class SearchPackageFragment : Fragment(), SearchView, ISearch {
                 search(s.toString())
             }
         })
+
+        rvSearchResult.layoutManager = LinearLayoutManager(context)
+        rvSearchResult.adapter = adapter
+
+        adapter.manager.addDelegate(SearchDelegate())
+
+        presenter = SearchPresenter()
+
+        presenter?.attachView(this)
+        presenter?.search("a")
     }
 
     override fun onActivityResult(requestCode: Int, resCode: Int, data: Intent?) {
@@ -84,7 +95,7 @@ class SearchPackageFragment : Fragment(), SearchView, ISearch {
     }
 
     override fun <Response : List<Any>> onSearchResult(response: Response) {
-        adapter.addAll(response)
+        adapter.replaceAll(response)
     }
 
     override fun showError(message: String?) {
