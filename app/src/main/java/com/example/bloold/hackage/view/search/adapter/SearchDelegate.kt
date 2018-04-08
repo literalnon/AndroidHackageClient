@@ -1,4 +1,4 @@
-package com.example.bloold.hackage.view.search
+package com.example.bloold.hackage.view.search.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.bloold.hackage.R
 import com.example.bloold.hackage.base.adapters.AbstractAdapterDelegate
-import com.example.bloold.hackage.base.adapters.AdapterDelegate
+import com.example.bloold.hackage.view.search.base.ISearchModel
 import kotlinx.android.synthetic.main.search_item.view.*
 
 /**

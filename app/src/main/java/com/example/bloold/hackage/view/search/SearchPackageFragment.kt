@@ -15,14 +15,16 @@ import android.view.ViewGroup
 
 import com.example.bloold.hackage.R
 import com.example.bloold.hackage.base.adapters.DelegationAdapter
-import com.example.bloold.hackage.mvp.IView
+import com.example.bloold.hackage.view.search.adapter.SearchDelegate
+import com.example.bloold.hackage.view.search.base.ISearch
+import com.example.bloold.hackage.view.search.base.ISearchView
 import kotlinx.android.synthetic.main.fragment_search_package.*
 
 
 /**
  * A simple [Fragment] subclass.
  */
-class SearchPackageFragment : Fragment(), SearchView, ISearch {
+class SearchPackageFragment : Fragment(), ISearchView, ISearch {
 
     companion object {
 
