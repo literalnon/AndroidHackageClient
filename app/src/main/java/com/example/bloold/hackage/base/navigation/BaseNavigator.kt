@@ -26,7 +26,7 @@ interface INavigationStrategy {
     fun updateChildUi(enumObject: IBaseItem?, data: Any? = null)
 }
 
-abstract class NavigatorTransactionManager(protected val fragmentManager: FragmentManager, protected val containerId: Int) {
+/*abstract class NavigatorTransactionManager(protected val fragmentManager: FragmentManager, protected val containerId: Int) {
 
     fun showFragment(enumObject: IBaseItem, data: Any? = null) {
         if(getCurrentScreen() == enumObject) {
@@ -45,9 +45,10 @@ abstract class NavigatorTransactionManager(protected val fragmentManager: Fragme
     abstract fun updateUi(enumObject: IBaseItem?)
 
     abstract fun updateChildUi(enumObject: IBaseItem?, data: Any? = null)
-}
+}*/
 
 interface BaseNavigator {
+
     fun pushFragment(enumObject: IBaseItem, data: Any? = null)
 
     fun pushFragmentWithoutUpdate(enumObject: IBaseItem, data: Any? = null)
@@ -55,4 +56,8 @@ interface BaseNavigator {
     fun openFirstFragment(data: Any? = null)
 
     fun showScreen(enumObject: IBaseItem, data: Any? = null)
+
+    fun getCurrentScreen(): IBaseItem?
+
+    fun backNavigation(): Boolean
 }

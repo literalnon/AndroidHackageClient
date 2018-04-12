@@ -7,8 +7,7 @@ import android.support.v4.app.FragmentTransaction
 /**
  * Created by dmitry on 20.11.17.
  */
-abstract class ReplaceStrategy(fragmentManager: FragmentManager, containerId: Int) :
-        NavigatorTransactionManager(fragmentManager, containerId) {
+abstract class ReplaceStrategy(override val fragmentManager: FragmentManager, override val containerId: Int) : INavigationStrategy {
 
     override fun popFragment() {
         fragmentManager.popBackStack()
@@ -19,7 +18,7 @@ abstract class ReplaceStrategy(fragmentManager: FragmentManager, containerId: In
     }
 
     override fun showFragmentWithParcelable(enumObject: IBaseItem, fragment: Fragment, data: Any?) {
-        super.showFragment(enumObject, data)
+        //super.showFragment(enumObject, data)
 
         enumObject.putAnimation(fragmentManager)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)

@@ -9,8 +9,7 @@ import kotlin.collections.HashSet
 /**
  * Created by dmitry on 20.11.17.
  */
-abstract class SetFragmentsStrategy(fragmentManager: FragmentManager, containerId: Int) :
-        NavigatorTransactionManager(fragmentManager, containerId) {
+abstract class SetFragmentsStrategy(override val fragmentManager: FragmentManager, override val containerId: Int) : INavigationStrategy {
 
     private val tags: HashSet<IBaseItem?> = HashSet<IBaseItem?>()
     private var currentItem: IBaseItem? = null
@@ -24,7 +23,7 @@ abstract class SetFragmentsStrategy(fragmentManager: FragmentManager, containerI
     }
 
     override fun showFragmentWithParcelable(enumObject: IBaseItem, fragment: Fragment, data: Any?) {
-        super.showFragment(enumObject, data)
+        //super.showFragment(enumObject, data)
 
         /*if (enumObject.getPreviousEnumObject() != null) {
             enumObject.putAnimation(fragmentManager)

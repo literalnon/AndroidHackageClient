@@ -52,4 +52,13 @@ class Navigator: BaseNavigator {
             navigationStrategy?.showFirstFragment(firstFragment!!, data)
         }
     }
+
+    override fun getCurrentScreen(): IBaseItem? {
+        return navigationStrategy?.getCurrentScreen()
+    }
+
+    override fun backNavigation(): Boolean {
+        return navigationStrategy?.backNavigation() ?: false
+    }
+
 }

@@ -1,0 +1,31 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.bloold.hackage.view.search.choice.ChoiceFragment"
+    >
+
+    <TextView
+        android:id="@+id/tvHoogleChoice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|right"
+        android:layout_marginRight="60dp"
+        android:padding="16dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/choice_fragment_hoogle"
+        />
+
+    <TextView
+        android:id="@+id/tvHackageChoice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|left"
+        android:layout_marginLeft="60dp"
+        android:padding="16dp"
+        android:background="@color/colorPrimary"
+        android:text="@string/choice_fragment_hackage"
+        />
+
+</FrameLayout>
