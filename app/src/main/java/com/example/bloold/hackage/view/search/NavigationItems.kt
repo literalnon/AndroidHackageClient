@@ -33,6 +33,6 @@ enum class NavigationScreens : IBaseItem {
 
         override fun getPreviousEnumObject() = CHOOSE_SEARCH_SCREEN
 
-        override fun getFragment() = ChoiceFragment.newInstance()
+        override fun getFragment() = HoogleFragment.newInstance()
     }
 }
