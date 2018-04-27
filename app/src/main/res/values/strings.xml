@@ -4,9 +4,8 @@
     <!-- Choice Fragment -->
     <string name="choice_fragment_hackage">Hackage</string>
     <string name="choice_fragment_hoogle">Hoogle</string>
+    <string name="choice_fragment_users">Users</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <string name="hoogle_website">https://www.haskell.org/hoogle/</string>
 
 </resources>

@@ -34,13 +34,18 @@ class ChoiceFragment : BaseChildFragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        tvHoogleChoice.setOnClickListener(View.OnClickListener {
+        tvHoogleChoice.setOnClickListener({
             parent?.action(NavigationScreens.HOOGLE_SEARCH_SCREEN)
         })
 
-        tvHackageChoice.setOnClickListener(View.OnClickListener {
+        tvHackageChoice.setOnClickListener({
             parent?.action(NavigationScreens.HACKAGE_SEARCH_SCREEN)
         })
+
+        tvUsersChoice.setOnClickListener({
+            parent?.action(NavigationScreens.USERS_SEARCH_SCREEN)
+        })
+
     }
 
     override fun callback(item: IBaseItem, data: Any?) {

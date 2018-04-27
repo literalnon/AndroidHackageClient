@@ -42,7 +42,7 @@ class HoogleFragment : Fragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        webViewHoogleSearch.loadUrl("https://www.haskell.org/hoogle/")
+        webViewHoogleSearch.loadUrl(getString(R.string.hoogle_website))
         webViewHoogleSearch.webViewClient = MyWebViewClient()
     }
 }

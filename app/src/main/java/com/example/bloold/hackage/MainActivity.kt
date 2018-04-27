@@ -2,13 +2,11 @@ package com.example.bloold.hackage
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import com.example.bloold.hackage.base.navigation.AddBackStackStrategy
 import com.example.bloold.hackage.base.navigation.IBaseItem
 import com.example.bloold.hackage.base.navigation.Navigator
 import com.example.bloold.hackage.base.navigation.SimpleParent
 import com.example.bloold.hackage.view.search.NavigationScreens
-import com.example.bloold.hackage.view.search.SearchPackageFragment
 
 class MainActivity : AppCompatActivity(), SimpleParent {
 
@@ -20,7 +18,7 @@ class MainActivity : AppCompatActivity(), SimpleParent {
         setContentView(R.layout.activity_main)
 
         /*supportFragmentManager.beginTransaction()
-                .add(R.id.container, SearchPackageFragment.newInstance())
+                .add(R.id.container, SearchFragment.newInstance())
                 .commit()*/
 
         navigator = Navigator.NavigatorBuilder()

@@ -8,7 +8,9 @@ import android.speech.RecognizerIntent
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.text.Editable
+import android.text.TextUtils
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,15 +26,21 @@ import kotlinx.android.synthetic.main.fragment_search_package.*
 /**
  * A simple [Fragment] subclass.
  */
-class SearchPackageFragment : Fragment(), ISearchView, ISearch {
+class SearchFragment : Fragment(), ISearchView, ISearch {
 
     companion object {
+        const private val TAG = "FIND_FRAGMENT"
+        const private val REQUEST_VOICE_SEARCH = 8972
+        const private val EXTRA_WHAT_NAME = "what"
 
-        private val TAG = "FIND_FRAGMENT"
-        private val REQUEST_VOICE_SEARCH = 8972
+        enum class SearchWhat {
+            USERS_SEARCH,
+            PACKAGE_SEARCH
+        }
 
-        fun newInstance(): Fragment {
-            return SearchPackageFragment()
+        fun newInstance(what: SearchWhat): Fragment {
+            return SearchFragment()
+                    .apply { arguments = Bundle().apply { putString(EXTRA_WHAT_NAME, what.name) } }
         }
 
     }
@@ -40,9 +48,14 @@ class SearchPackageFragment : Fragment(), ISearchView, ISearch {
     /** variable **/
 
     override var presenter: SearchPresenter? = null
-    val adapter: DelegationAdapter<Any> = DelegationAdapter()
+    private val adapter: DelegationAdapter<Any> = DelegationAdapter()
+    private var whatSearch: String? = null
 
-    /** Fragment methods **/
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        whatSearch = arguments.getString(EXTRA_WHAT_NAME, SearchWhat.PACKAGE_SEARCH.name)
+    }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -78,7 +91,7 @@ class SearchPackageFragment : Fragment(), ISearchView, ISearch {
         presenter = SearchPresenter()
 
         presenter?.attachView(this)
-        presenter?.search("a")
+        search("a")
     }
 
     override fun onActivityResult(requestCode: Int, resCode: Int, data: Intent?) {
@@ -115,7 +128,11 @@ class SearchPackageFragment : Fragment(), ISearchView, ISearch {
     /** ISearch methods **/
 
     override fun search(term: String) {
-        presenter?.search(term)
+        if (TextUtils.equals(SearchWhat.USERS_SEARCH.name, whatSearch)) {
+            presenter?.searchUsers(term)
+        } else {
+            presenter?.search(term)
+        }
     }
 
     /** other private methods **/
@@ -126,4 +143,3 @@ class SearchPackageFragment : Fragment(), ISearchView, ISearch {
         startActivityForResult(intentS, REQUEST_VOICE_SEARCH)
     }
 }
-

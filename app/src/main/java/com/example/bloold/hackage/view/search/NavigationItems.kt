@@ -24,7 +24,7 @@ enum class NavigationScreens : IBaseItem {
 
         override fun getPreviousEnumObject() = CHOOSE_SEARCH_SCREEN
 
-        override fun getFragment() = SearchPackageFragment.newInstance()
+        override fun getFragment() = SearchFragment.newInstance(SearchFragment.Companion.SearchWhat.PACKAGE_SEARCH)
     },
     HOOGLE_SEARCH_SCREEN {
         override var data: Any? = null
@@ -34,5 +34,16 @@ enum class NavigationScreens : IBaseItem {
         override fun getPreviousEnumObject() = CHOOSE_SEARCH_SCREEN
 
         override fun getFragment() = HoogleFragment.newInstance()
+    },
+    USERS_SEARCH_SCREEN {
+        override var data: Any? = null
+
+        override fun getTag() = "USERS_SEARCH_SCREEN"
+
+        override fun getPreviousEnumObject() = CHOOSE_SEARCH_SCREEN
+
+        override fun getFragment() = SearchFragment.newInstance(SearchFragment.Companion.SearchWhat.USERS_SEARCH)
     }
+
+
 }

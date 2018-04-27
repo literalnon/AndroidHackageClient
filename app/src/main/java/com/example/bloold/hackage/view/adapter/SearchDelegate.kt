@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import com.example.bloold.hackage.R
 import com.example.bloold.hackage.base.adapters.AbstractAdapterDelegate
 import com.example.bloold.hackage.view.search.base.ISearchModel
+import com.example.bloold.hackage.view.search.base.IShortUserModel
 import kotlinx.android.synthetic.main.search_item.view.*
 
 /**
@@ -14,7 +15,7 @@ import kotlinx.android.synthetic.main.search_item.view.*
  */
 class SearchDelegate: AbstractAdapterDelegate<Any, Any, SearchDelegate.Holder>() {
     override fun isForViewType(item: Any, items: MutableList<Any>, position: Int): Boolean {
-        return item is ISearchModel
+        return item is ISearchModel || item is IShortUserModel
     }
 
     override fun onCreateViewHolder(parent: ViewGroup): Holder {
@@ -23,9 +24,13 @@ class SearchDelegate: AbstractAdapterDelegate<Any, Any, SearchDelegate.Holder>()
 
     override fun onBindViewHolder(holder: Holder, item: Any) {
         with(holder) {
-            item as ISearchModel
 
-            tvName.text = item.name
+            if (item is IShortUserModel) {
+                tvName.text = item.name
+            } else if (item is ISearchModel) {
+                tvName.text = item.name
+            }
+
         }
     }
 
@@ -33,3 +38,4 @@ class SearchDelegate: AbstractAdapterDelegate<Any, Any, SearchDelegate.Holder>()
         val tvName = itemView.tvName
     }
 }
+
