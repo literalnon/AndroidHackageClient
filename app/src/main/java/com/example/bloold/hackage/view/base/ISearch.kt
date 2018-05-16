@@ -5,6 +5,7 @@ package com.example.bloold.hackage.view.search.base
  */
 interface ISearch {
     fun search(term: String)
+    fun itemClick(id: String)
 }
 
 interface ISearchResponse {

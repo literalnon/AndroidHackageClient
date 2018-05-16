@@ -1,7 +1,10 @@
 package com.example.bloold.hackage.view.search
 
-import com.example.bloold.hackage.base.navigation.IBaseItem
+import android.support.v4.app.Fragment
+import com.example.bloold.hackage.view.packageItem.PackageFragment
 import com.example.bloold.hackage.view.search.choice.ChoiceFragment
+import com.example.bloold.hackage.view.video.VideoFragment
+import services.mobiledev.ru.cheap.navigation.IBaseItem
 
 /**
  * Created by bloold on 12.04.18.
@@ -15,7 +18,7 @@ enum class NavigationScreens : IBaseItem {
 
         override fun getPreviousEnumObject() = null
 
-        override fun getFragment() = ChoiceFragment.newInstance()
+        override fun getFragment(): Fragment = ChoiceFragment.newInstance()
     },
     HACKAGE_SEARCH_SCREEN {
         override var data: Any? = null
@@ -43,6 +46,24 @@ enum class NavigationScreens : IBaseItem {
         override fun getPreviousEnumObject() = CHOOSE_SEARCH_SCREEN
 
         override fun getFragment() = SearchFragment.newInstance(SearchFragment.Companion.SearchWhat.USERS_SEARCH)
+    },
+    VIDEO_SCREEN {
+        override var data: Any? = null
+
+        override fun getTag() = "VIDEO_SCREEN"
+
+        override fun getPreviousEnumObject() = CHOOSE_SEARCH_SCREEN
+
+        override fun getFragment() = VideoFragment.newInstance()
+    },
+    PACKAGE_SCREEN {
+        override var data: Any? = null
+
+        override fun getTag() = "PACKAGE_SCREEN"
+
+        override fun getPreviousEnumObject() = HACKAGE_SEARCH_SCREEN
+
+        override fun getFragment() = PackageFragment.newInstance(data as String?)
     }
 
 

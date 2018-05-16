@@ -1,7 +1,5 @@
 package com.example.bloold.hackage.view.search
 
-import android.text.TextUtils
-import android.util.Log
 import com.example.bloold.hackage.mvp.IPresenter
 import com.example.bloold.hackage.network.RestApi
 import com.example.bloold.hackage.network.services.SearchPackageService
@@ -12,7 +10,12 @@ import com.example.bloold.hackage.view.search.base.IShortUserModel
 import com.example.bloold.hackage.view.search.model.SearchModelManager
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import retrofit2.Call
+import services.mobiledev.ru.cheap.mvp.DaggerPresenterDependencyComponent
+import services.mobiledev.ru.cheap.navigation.Navigator
+import java.util.*
 
 /**
  * Created by bloold on 01.04.18.
@@ -23,10 +26,15 @@ class SearchPresenter :
         ISearch,
         ISearchResponse {
 
+    private val dependencyComponent = DaggerPresenterDependencyComponent.builder().build()
+
+    override val subscriptions: CompositeDisposable = dependencyComponent.getSubscriptions()
+    override val requestQueue: HashSet<Call<*>> = dependencyComponent.getRequestQueue()
+
     /** variable **/
 
     override var view: ISearchView? = null
-    override var model: SearchModelManager?  = null
+    override var model: SearchModelManager = SearchModelManager()
 
     var service = RestApi.createService(SearchPackageService::class.java)
 
@@ -61,12 +69,17 @@ class SearchPresenter :
                     .subscribeOn(Schedulers.io())
                     .map { usrs -> usrs.filter { user -> user.name?.contains(term) ?: false } }
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe( {
+                    .subscribe({
                         view?.onSearchResult(it)
                     }, {
                         view?.onSearchResult(arrayListOf())
-                    } )
+                    })
         }
+    }
+
+    override fun itemClick(id: String) {
+        NavigationScreens.PACKAGE_SCREEN.data = id
+        getNavigator()?.showScreen(NavigationScreens.PACKAGE_SCREEN)
     }
 
     /** ISearchResponse methods **/
@@ -76,6 +89,10 @@ class SearchPresenter :
     }
 
     /** IPresenter methods **/
+
+    override fun getNavigator(): Navigator? {
+        return view?.getNavigationParent()?.navigator
+    }
 
     override fun attachView(view: ISearchView) {
         this.view = view

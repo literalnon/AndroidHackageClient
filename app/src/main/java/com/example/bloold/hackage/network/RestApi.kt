@@ -44,6 +44,26 @@ object RestApi {
                 .build()
     }
 
+    fun create(authenticator: Authenticator, baseUrl: String): Retrofit {
+        val okHttpClient = OkHttpClient.Builder()
+                .addInterceptor(BearerAuthorizationInterceptor())
+                .authenticator(authenticator)
+
+        val interceptor = HttpLoggingInterceptor()
+        interceptor.level = HttpLoggingInterceptor.Level.BODY
+
+        okHttpClient.addNetworkInterceptor(interceptor)
+
+        val gson = GsonBuilder().create()
+
+        return Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .baseUrl(baseUrl)
+                .client(okHttpClient.build())
+                .build()
+    }
+
     fun <T> createService(serviceClass: Class<T>): T {
         if (retrofit == null) {
             throw IllegalStateException("Call `RestApi.init(Context, Authenticator)` before calling this method.")

@@ -10,17 +10,16 @@ import android.support.v7.widget.LinearLayoutManager
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.example.bloold.hackage.R
 import com.example.bloold.hackage.base.adapters.DelegationAdapter
 import com.example.bloold.hackage.view.search.adapter.SearchDelegate
 import com.example.bloold.hackage.view.search.base.ISearch
 import com.example.bloold.hackage.view.search.base.ISearchView
 import kotlinx.android.synthetic.main.fragment_search_package.*
+import services.mobiledev.ru.cheap.navigation.INavigationParent
 
 
 /**
@@ -47,7 +46,7 @@ class SearchFragment : Fragment(), ISearchView, ISearch {
 
     /** variable **/
 
-    override var presenter: SearchPresenter? = null
+    override var presenter: SearchPresenter = SearchPresenter()
     private val adapter: DelegationAdapter<Any> = DelegationAdapter()
     private var whatSearch: String? = null
 
@@ -69,6 +68,10 @@ class SearchFragment : Fragment(), ISearchView, ISearch {
             displaySpeechRecognizer()
         }
 
+        ivCloseSearch.setOnClickListener {
+            activity.onBackPressed()
+        }
+
         etSearch.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
 
@@ -86,11 +89,9 @@ class SearchFragment : Fragment(), ISearchView, ISearch {
         rvSearchResult.layoutManager = LinearLayoutManager(context)
         rvSearchResult.adapter = adapter
 
-        adapter.manager.addDelegate(SearchDelegate())
+        adapter.manager.addDelegate(SearchDelegate({ itemClick(it) }))
 
-        presenter = SearchPresenter()
-
-        presenter?.attachView(this)
+        presenter.attachView(this)
         search("a")
     }
 
@@ -105,16 +106,12 @@ class SearchFragment : Fragment(), ISearchView, ISearch {
 
     /** View methods **/
 
-    override fun attachPresenter(presenter: SearchPresenter) {
-        this.presenter = presenter
-    }
-
     override fun <Response : List<Any>> onSearchResult(response: Response) {
         adapter.replaceAll(response)
     }
 
-    override fun showError(message: String?) {
-
+    override fun getNavigationParent(): INavigationParent {
+        return activity as INavigationParent
     }
 
     override fun showLoadingDialog(message: String?) {
@@ -133,6 +130,10 @@ class SearchFragment : Fragment(), ISearchView, ISearch {
         } else {
             presenter?.search(term)
         }
+    }
+
+    override fun itemClick(id: String) {
+        presenter.itemClick(id)
     }
 
     /** other private methods **/

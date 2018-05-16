@@ -1,16 +1,14 @@
-package com.example.bloold.hackage.base.navigation
+package services.mobiledev.ru.cheap.navigation
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
-import android.util.Log
-import com.example.bloold.hackage.BuildConfig
 import java.util.*
 
 /**
  * Created by dmitry on 20.11.17.
  */
-class AddBackStackStrategy(override val fragmentManager: FragmentManager, override val containerId: Int): INavigationStrategy {
+class AddBackStackStrategy(override val fragmentManager: FragmentManager, override val containerId: Int) : INavigationStrategy {
 
     private val tags: Stack<IBaseItem?> = Stack()
 
@@ -37,21 +35,25 @@ class AddBackStackStrategy(override val fragmentManager: FragmentManager, overri
 
     override fun getCurrentScreen(): IBaseItem? {
         return if (tags.empty()) {
-                    null
-                } else {
-                    tags.peek()
-                }
+            null
+        } else {
+            tags.peek()
+        }
     }
 
     override fun showFirstFragment(enumObject: IBaseItem, data: Any?) {
-        showFragment(enumObject, data)
+        tags.push(enumObject)
+
+        enumObject.putAnimation(fragmentManager)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .replace(containerId, enumObject.getFragment(), enumObject.getTag())
+                .commit()
     }
 
     override fun showFragmentWithParcelable(enumObject: IBaseItem, fragment: Fragment, data: Any?) {
-        //super.showFragment(enumObject, data)
 
         if (tags.contains(enumObject)) {
-            while(!tags.empty() && tags.peek() != enumObject) {
+            while (!tags.empty() && tags.peek() != enumObject) {
                 tags.pop()
                 fragmentManager.popBackStack()
             }
@@ -81,18 +83,13 @@ class AddBackStackStrategy(override val fragmentManager: FragmentManager, overri
     override fun backNavigation(): Boolean {
         when {
             tags.empty() -> {
-                //Log.d("backNavigation", "1")
                 return false
             }
             tags.size == 1 -> {
-                //Log.d("backNavigation", "2")
                 popFragment()
                 return false
             }
             else -> {
-                if (BuildConfig.DEBUG) {
-                    Log.d("backNavigation", "tags.size > 1")
-                }
 
                 val currentEnumObject: IBaseItem? = tags.peek()
 
@@ -100,18 +97,11 @@ class AddBackStackStrategy(override val fragmentManager: FragmentManager, overri
                     clear()
                 }
 
-                if (BuildConfig.DEBUG) {
-                    Log.d("backNavigation", "see ${tags.peek()?.getTag()} cur: ${currentEnumObject?.getPreviousEnumObject()?.getTag()}")
-                }
-
                 while (!tags.empty() && tags.peek()?.getTag() != currentEnumObject?.getPreviousEnumObject()?.getTag()) {
-                    if (BuildConfig.DEBUG) {
-                        Log.d("backNavigation", "pop ${tags.peek()?.getTag()} cur: ${currentEnumObject?.getPreviousEnumObject()?.getTag()}")
-                    }
                     popFragment()
                 }
 
-                if(!tags.empty())
+                if (!tags.empty())
                     updateUi(tags.peek())
 
                 return true

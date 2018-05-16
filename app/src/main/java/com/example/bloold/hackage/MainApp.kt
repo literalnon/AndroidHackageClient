@@ -3,6 +3,8 @@ package com.example.bloold.hackage
 import android.content.Context
 import android.support.multidex.MultiDex
 import android.support.multidex.MultiDexApplication
+import com.bumptech.glide.annotation.GlideModule
+import com.bumptech.glide.module.AppGlideModule
 import com.example.bloold.hackage.network.NetworkError
 import com.example.bloold.hackage.network.RestApi
 import com.jakewharton.threetenabp.AndroidThreeTen
@@ -33,3 +35,6 @@ class MainApp : MultiDexApplication() {
         MultiDex.install(this)
     }
 }
+
+@GlideModule
+class MyAppGlideModule : AppGlideModule()

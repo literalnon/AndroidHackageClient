@@ -9,10 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.example.bloold.hackage.R
-import com.example.bloold.hackage.base.navigation.BaseChildFragment
-import com.example.bloold.hackage.base.navigation.IBaseItem
 import com.example.bloold.hackage.view.search.NavigationScreens
 import kotlinx.android.synthetic.main.fragment_choice.*
+import services.mobiledev.ru.cheap.navigation.BaseChildFragment
+import services.mobiledev.ru.cheap.navigation.IBaseItem
+import services.mobiledev.ru.cheap.navigation.INavigationParent
 
 
 /**
@@ -35,17 +36,24 @@ class ChoiceFragment : BaseChildFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         tvHoogleChoice.setOnClickListener({
-            parent?.action(NavigationScreens.HOOGLE_SEARCH_SCREEN)
+            getNavigationParent().navigator?.showScreen(NavigationScreens.HOOGLE_SEARCH_SCREEN)
         })
 
         tvHackageChoice.setOnClickListener({
-            parent?.action(NavigationScreens.HACKAGE_SEARCH_SCREEN)
+            getNavigationParent().navigator?.showScreen(NavigationScreens.HACKAGE_SEARCH_SCREEN)
         })
 
         tvUsersChoice.setOnClickListener({
-            parent?.action(NavigationScreens.USERS_SEARCH_SCREEN)
+            getNavigationParent().navigator?.showScreen(NavigationScreens.USERS_SEARCH_SCREEN)
         })
 
+        tvVideoChoice.setOnClickListener({
+            getNavigationParent().navigator?.showScreen(NavigationScreens.VIDEO_SCREEN)
+        })
+    }
+
+    fun getNavigationParent(): INavigationParent {
+        return activity as INavigationParent
     }
 
     override fun callback(item: IBaseItem, data: Any?) {

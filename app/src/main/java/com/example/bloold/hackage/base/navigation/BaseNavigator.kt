@@ -1,4 +1,4 @@
-package com.example.bloold.hackage.base.navigation;
+package services.mobiledev.ru.cheap.navigation
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
@@ -25,27 +25,6 @@ interface INavigationStrategy {
 
     fun updateChildUi(enumObject: IBaseItem?, data: Any? = null)
 }
-
-/*abstract class NavigatorTransactionManager(protected val fragmentManager: FragmentManager, protected val containerId: Int) {
-
-    fun showFragment(enumObject: IBaseItem, data: Any? = null) {
-        if(getCurrentScreen() == enumObject) {
-            return
-        }
-    }
-    abstract fun getCurrentScreen(): IBaseItem?
-    abstract fun clear()
-    abstract fun getCurrentFragment(): Fragment
-    abstract fun showFirstFragment(enumObject: IBaseItem, data: Any? = null)
-    open fun backStackSize(): Int {
-        return fragmentManager.backStackEntryCount
-    }
-    abstract fun showFragmentWithParcelable(enumObject: IBaseItem, fragment: Fragment, data: Any? = null)
-    abstract fun backNavigation(): Boolean
-    abstract fun updateUi(enumObject: IBaseItem?)
-
-    abstract fun updateChildUi(enumObject: IBaseItem?, data: Any? = null)
-}*/
 
 interface BaseNavigator {
 

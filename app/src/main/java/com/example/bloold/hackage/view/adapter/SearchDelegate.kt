@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.search_item.view.*
 /**
  * Created by bloold on 01.04.18.
  */
-class SearchDelegate: AbstractAdapterDelegate<Any, Any, SearchDelegate.Holder>() {
+class SearchDelegate(val callback:(String) -> Unit) : AbstractAdapterDelegate<Any, Any, SearchDelegate.Holder>() {
     override fun isForViewType(item: Any, items: MutableList<Any>, position: Int): Boolean {
         return item is ISearchModel || item is IShortUserModel
     }
@@ -25,12 +25,19 @@ class SearchDelegate: AbstractAdapterDelegate<Any, Any, SearchDelegate.Holder>()
     override fun onBindViewHolder(holder: Holder, item: Any) {
         with(holder) {
 
+            var id: String? = "Strafunski-Sdf2Haskell"
+
             if (item is IShortUserModel) {
                 tvName.text = item.name
+                id = item.id
             } else if (item is ISearchModel) {
                 tvName.text = item.name
+                id = item.name
             }
 
+            itemView.setOnClickListener{
+                callback(id ?: "Strafunski-Sdf2Haskell")
+            }
         }
     }
 

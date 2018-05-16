@@ -1,4 +1,4 @@
-package com.example.bloold.hackage.base.navigation;
+package services.mobiledev.ru.cheap.navigation
 
 /**
  * Created by dmitry on 20.11.17.

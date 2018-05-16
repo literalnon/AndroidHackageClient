@@ -14,6 +14,9 @@ interface SearchPackageService {
     @GET("packages/search")
     fun searchPackages(@Query("terms") term: String): Observable<List<ISearchModel>>
 
+    @GET("packages/search/")
+    fun searchPackage(@Query("terms") term: String): Observable<List<ISearchModel>>
+
     @GET("users/")
     fun searchUsers(): Observable<List<IShortUserModel>>
 }

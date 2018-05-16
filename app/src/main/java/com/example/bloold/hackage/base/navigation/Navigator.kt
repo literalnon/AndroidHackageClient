@@ -1,33 +1,28 @@
-package com.example.bloold.hackage.base.navigation
-
-import android.os.Build
-import android.support.v4.app.FragmentManager
-import android.util.Log
+package services.mobiledev.ru.cheap.navigation
 
 /**
  * Created by bloold on 08.04.18.
  */
-class Navigator: BaseNavigator {
+class Navigator : BaseNavigator {
 
-    class NavigatorBuilder {
+    class Builder {
 
         private var navigator: Navigator = Navigator()
 
-        fun Build(): Navigator {
+        fun build(): Navigator {
             return navigator
         }
 
-        fun setStrategy(navigationStrategy: INavigationStrategy): NavigatorBuilder {
+        fun strategy(navigationStrategy: INavigationStrategy): Builder {
             navigator.navigationStrategy = navigationStrategy
             return this
         }
 
-        fun setFirstFragment(firstFragment: IBaseItem): NavigatorBuilder {
+        fun firstFragment(firstFragment: IBaseItem): Builder {
             navigator.firstFragment = firstFragment
             return this
         }
     }
-
 
     private var navigationStrategy: INavigationStrategy? = null
     private var firstFragment: IBaseItem? = null

@@ -8,7 +8,11 @@ import com.example.bloold.hackage.view.search.base.ISearchResponse
 /**
  * Created by bloold on 01.04.18.
  */
-class SearchModelManager(override var presenter: SearchPresenter) : IModel<SearchPresenter>, ISearch, ISearchResponse {
+class SearchModelManager: IModel, ISearch, ISearchResponse {
+    override fun itemClick(id: String) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     override fun search(term: String) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }

@@ -1,4 +1,4 @@
-package com.example.bloold.hackage.base.navigation
+package services.mobiledev.ru.cheap.navigation
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
@@ -78,9 +78,6 @@ abstract class SetFragmentsStrategy(override val fragmentManager: FragmentManage
     }
 
     override fun backNavigation(): Boolean {
-        Log.d("navigation", tags.size.toString())
-        Log.d("navigation", currentItem?.getPreviousEnumObject().toString())
-        Log.d("navigation", currentItem.toString())
 
         return when {
             tags.isEmpty() ->

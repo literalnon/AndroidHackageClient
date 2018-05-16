@@ -1,4 +1,4 @@
-package com.example.bloold.hackage.base.navigation
+package services.mobiledev.ru.cheap.navigation
 
 import android.content.Context
 import android.support.v4.app.Fragment
@@ -6,7 +6,7 @@ import android.support.v4.app.Fragment
 /**
  * Created by bloold on 12.04.18.
  */
-abstract class BaseChildFragment : Fragment(), ChildNavigationView {
+abstract class BaseChildFragment: Fragment(), ChildNavigationView {
 
     var parent: SimpleParent? = null
 

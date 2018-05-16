@@ -38,4 +38,14 @@
         android:text="@string/choice_fragment_users"
         />
 
+    <TextView
+        android:id="@+id/tvVideoChoice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:padding="16dp"
+        android:background="@android:color/holo_blue_light"
+        android:text="video"
+        />
+
 </FrameLayout>

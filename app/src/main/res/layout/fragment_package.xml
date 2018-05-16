@@ -1,0 +1,130 @@
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.bloold.hackage.view.packageItem.PackageFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:gravity="center_horizontal"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:text="@string/package_fragment_author" />
+
+        <TextView
+            android:id="@+id/tvAuthor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_marginLeft="16dp"
+            android:textStyle="italic"
+            android:text="tvAuthor" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:textSize="18sp"
+            android:text="@string/package_fragment_license" />
+
+        <TextView
+            android:id="@+id/tvLicense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_marginLeft="16dp"
+            android:textStyle="italic"
+            android:text="tvAuthor" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:gravity="center_horizontal"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="@string/package_fragment_downloads" />
+
+        <TextView
+            android:id="@+id/tvDownloads"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_marginLeft="16dp"
+            android:textStyle="italic"
+            android:text="tvAuthor" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textStyle="bold"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:gravity="center_horizontal"
+            android:textSize="18sp"
+            android:text="@string/package_fragment_maintainer" />
+
+        <TextView
+            android:id="@+id/tvMaintainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:layout_marginLeft="16dp"
+            android:textStyle="italic"
+            android:text="tvAuthor" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:gravity="center_horizontal"
+            android:textSize="18sp"
+            android:text="@string/package_fragment_source_repo" />
+
+        <TextView
+            android:id="@+id/tvSourceRepo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:textStyle="italic"
+            android:layout_marginLeft="16dp"
+            android:text="tvSourceRepo" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:gravity="center_horizontal"
+            android:text="@string/package_fragment_readme" />
+
+        <TextView
+            android:id="@+id/tvReadme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="tvReadme" />
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>
