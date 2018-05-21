@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Hackage.iml" filepath="$PROJECT_DIR$/Hackage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AndroidHackageClient.iml" filepath="$PROJECT_DIR$/AndroidHackageClient.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

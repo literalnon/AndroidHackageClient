@@ -2,7 +2,6 @@ package com.example.bloold.hackage.view.search
 
 import android.support.v4.app.Fragment
 import com.example.bloold.hackage.view.packageItem.PackageFragment
-import com.example.bloold.hackage.view.search.choice.ChoiceFragment
 import com.example.bloold.hackage.view.video.VideoFragment
 import services.mobiledev.ru.cheap.navigation.IBaseItem
 
@@ -11,21 +10,12 @@ import services.mobiledev.ru.cheap.navigation.IBaseItem
  */
 
 enum class NavigationScreens : IBaseItem {
-    CHOOSE_SEARCH_SCREEN {
-        override var data: Any? = null
-
-        override fun getTag() = "CHOOSE_SEARCH_SCREEN"
-
-        override fun getPreviousEnumObject() = null
-
-        override fun getFragment(): Fragment = ChoiceFragment.newInstance()
-    },
     HACKAGE_SEARCH_SCREEN {
         override var data: Any? = null
 
         override fun getTag() = "HACKAGE_SEARCH_SCREEN"
 
-        override fun getPreviousEnumObject() = CHOOSE_SEARCH_SCREEN
+        override fun getPreviousEnumObject() = null
 
         override fun getFragment() = SearchFragment.newInstance(SearchFragment.Companion.SearchWhat.PACKAGE_SEARCH)
     },
@@ -34,7 +24,7 @@ enum class NavigationScreens : IBaseItem {
 
         override fun getTag() = "HOOGLE_SEARCH_SCREEN"
 
-        override fun getPreviousEnumObject() = CHOOSE_SEARCH_SCREEN
+        override fun getPreviousEnumObject() = null
 
         override fun getFragment() = HoogleFragment.newInstance()
     },
@@ -43,7 +33,7 @@ enum class NavigationScreens : IBaseItem {
 
         override fun getTag() = "USERS_SEARCH_SCREEN"
 
-        override fun getPreviousEnumObject() = CHOOSE_SEARCH_SCREEN
+        override fun getPreviousEnumObject() = null
 
         override fun getFragment() = SearchFragment.newInstance(SearchFragment.Companion.SearchWhat.USERS_SEARCH)
     },
@@ -52,7 +42,7 @@ enum class NavigationScreens : IBaseItem {
 
         override fun getTag() = "VIDEO_SCREEN"
 
-        override fun getPreviousEnumObject() = CHOOSE_SEARCH_SCREEN
+        override fun getPreviousEnumObject() = null
 
         override fun getFragment() = VideoFragment.newInstance()
     },
